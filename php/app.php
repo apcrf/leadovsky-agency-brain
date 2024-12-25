@@ -6,7 +6,7 @@ class App
     public $pdo = null; // Объект PDO
     public $routes = []; // Маршруты
     public $route = []; // Найденный маршрут из routes + массив параметров маршрута
-	public $settings = []; // Настройки приложения
+	public $settings = []; // Настройки приложения из таблицы 'settings'
 	public $authUser = []; // Авторизованный пользователь
     public $version = ''; // Версия приложения для загрузки style.css и script.js
     public $content = null; // Строка или массив имён php-файлов - вложений в шаблон страницы
