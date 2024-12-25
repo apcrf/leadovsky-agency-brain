@@ -6,8 +6,8 @@ class App
     public $pdo = null; // Объект PDO
     public $routes = []; // Маршруты
     public $route = []; // Найденный маршрут из routes + массив параметров маршрута
-	public $settings = []; // Настройки приложения из таблицы 'settings'
-	public $authUser = []; // Авторизованный пользователь
+    public $settings = []; // Настройки приложения из таблицы 'settings'
+    public $authUser = []; // Авторизованный пользователь
     public $version = ''; // Версия приложения для загрузки style.css и script.js
     public $content = null; // Строка или массив имён php-файлов - вложений в шаблон страницы
 
@@ -217,6 +217,17 @@ class App
             default :
                 break;
         }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // Точка выхода из API
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public function response($status = 500, $data = null) {
+        // header() обязана вызываться до отправки любого вывода
+        header("Content-type: text/html; charset=utf-8");
+        http_response_code($status);
+        exit(json_encode($data, JSON_UNESCAPED_UNICODE));
     }
 
 } /* class */

@@ -7,9 +7,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-aliceblue py-0">
 	<div class="container-fluid">
 		<!-- siteName -->
-		<a class="navbar-brand me-0" href="/" title="Главная страница">
+		<a class="navbar-brand me-0" href="/">
 			<img src="/images/<?=$app->settings['appLogo']?>" style="width: 37px; height: 37px;">
-			<span class="d-inline-block me-1" style="transform: translateY(1px);">Главная страница</span>
+			<span class="d-inline-block me-1" style="transform: translateY(1px);"><?=$app->settings['appTitle']?></span>
 		</a>
 		<!-- toggler -->
 		<button type="button" class="navbar-toggler" onclick="navbarBtnClick(this)" title="Меню сайта">
@@ -20,13 +20,11 @@
 
 			<!-- Меню приложения -->
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
 				<!--
 				<li class="nav-item">
 					<a class="nav-link active" href="/">Главная страница</a>
 				</li>
 				-->
-
 				<?php
 					// Перебор пунктов Меню приложения
 					foreach ($app->menu as $item) {

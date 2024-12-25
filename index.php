@@ -11,24 +11,23 @@ $app = new App;
 
 //**************************************************************************************************
 
-// name, title
+// Меню приложения
 $app->menu = [
-    ['name' => 'test',  'title' => 'Тест'],
     ['name' => 'refs',  'title' => 'Справочники'],
     ['name' => 'tools', 'title' => 'Инструменты'],
 ];
 
 $app->routes = [
-    // type   pattern                          class      method     menu     icon                  title
-    ['GET',  '/',                             'Home',    'page',    '',      'fas fa-house',       'Главная страница'],
-    //
-    ['GET',  '/test',                         'Test',    'test',    'refs',  'fas fa-text-slash',  'Тест'],
-    ['*',    '/api/test1/([\w\-]+)',          'Test',    'api_test1'],
-    ['DIV',  '',                              '',        '',        'refs' ],
+    // type   pattern                          class         method      menu     icon                  title
+    ['GET',  '/',                             'Home',       'page',     '',      'fas fa-house',       'Главная страница'    ],
+    // Справочники
+    ['GET',  '/test',                         'Test',       'test',     'refs',  'fas fa-text-slash',  'Тест'                ],
+    ['*',    '/api/test1/([\w\-]+)',          'Test',       'api_test1'                                                      ],
+    ['DIV',  '',                              '',           '',         'refs'                                               ],
     // Инструменты
-    ['GET',  '/sysinfo',                      'SysInfo', 'sysinfo', 'tools', 'fas fa-circle-info', 'Информация о системе'],
-    //
-    ['*',    '/nopage',                       'Nopage',  'method1', '',      'fas fa-not-equal',   'Нет файла страницы'],
+    ['GET',  '/settings',                     'Settings',   'settings', 'tools', 'fas fa-gear',        'Настройки'           ],
+    ['GET',  '/api/settings',                 'Settings',   'index'                                                          ],
+    ['GET',  '/sysinfo',                      'SysInfo',    'sysinfo',  'tools', 'fas fa-circle-info', 'Информация о системе'],
 ];
 
 //**************************************************************************************************
