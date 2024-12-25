@@ -1,0 +1,155 @@
+
+html, body, #app { height: 100%; }
+
+.pointer { cursor: pointer; }
+.move { cursor: move; }
+
+/* bootstrap overwrite */
+.form-control::placeholder { color: lightgrey; }
+.btn:focus { box-shadow: none; }
+
+/* container-flex - зависимость от высоты меню */
+.container-flex { display: flex; flex-direction: column; height: calc(100% - 48px); margin-left: 15px; margin-right: 15px; }
+.block-header { display: block; }
+.block-grow { flex: 1 1 auto; overflow-y: auto; min-height: 0px; }
+.block-footer { display: block; }
+
+/* table-crud */
+.table-crud-thead {
+    overflow-y: scroll; overflow-x: hidden; border-left: 1px solid lightgrey; height: 58px;
+}
+.table-crud-thead-2 {
+    height: 85px;
+}
+.table-crud-thead-3 {
+    height: 125px;
+}
+.table-crud-tbody {
+    overflow-y: scroll; border-left: 1px solid lightgrey; border-bottom: 1px solid lightgrey;
+    height: calc(100% - 58px); /* 1st Floor - зависимость от высоты заголовка грида */
+}
+.table-crud-tbody-0 {
+    height: 100%; /* 1st Floor - грид без заголовка */
+}
+.table-crud-tbody-2 {
+    height: calc(100% - 85px); /* 1st Floor - зависимость от высоты заголовка грида */
+}
+.table-crud-tbody-3 {
+    height: calc(100% - 125px); /* 1st Floor - зависимость от высоты заголовка грида */
+}
+.table-crud-tbody tr { border-top: none; }
+.table-crud-thead .table-crud { height: 100%; }
+.table-crud-thead-2 .table-crud { height: 50%; }
+.table-crud-thead-3 .table-crud { height: 33.3333%; }
+.table-crud { table-layout: fixed; margin: 0; }
+.table-crud th, .table-crud td { vertical-align: middle; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+
+/* paginator */
+.paginator-btn { width: 50px; }
+.paginator-select { width: fit-content; }
+
+/* modal */
+.modal { display: block; background: rgba(1,1,1,.4); }
+.modal-dialog { min-width: 480px; max-width: 100%; }
+.modal-content { min-height: 290px; position: absolute; }
+.modal-header { display: block; }
+.modal-body { padding-top: 0; padding-bottom: 0; }
+.tab-content { height: 100%; }
+.tab-pane { height: 100%; padding-top: 1rem; }
+.tab-pane-container-flex { display: flex; flex-direction: column; padding-top: 0; }
+.tab-pane-block-header { display: block; padding-top: 1rem; }
+.tab-pane-block-grow { flex: 1 1 auto; overflow-y: auto; min-height: 0px; }
+.tab-pane-block-footer { display: block; padding-bottom: 0.4rem; }
+
+/* modal floor */
+.modal-floor-2 > .modal-dialog { width: 1100px; }
+/* lg+ */
+@media (min-width: 992px) {
+    .modal-floor-2 > .modal-dialog > .modal-content { height: 620px; }
+}
+
+/* modal floor 3 */
+.modal-floor-3 > .modal-dialog { width: 1080px; }
+/* lg+ */
+@media (min-width: 992px) {
+    .modal-floor-3 > .modal-dialog > .modal-content { height: 600px; }
+}
+
+/* modal floor 4 */
+.modal-floor-4 > .modal-dialog { width: 1060px; }
+/* lg+ */
+@media (min-width: 992px) {
+    .modal-floor-4 > .modal-dialog > .modal-content { height: 580px; }
+}
+
+/* modal col-form-label sm+ */
+@media (min-width: 576px) {
+    .col-form-label { text-align: right !important; }
+}
+
+/* modal check */
+.form-control-check-input { width: 23px; height: 23px; }
+
+/* parrots */
+:root {
+	--parrots-width: 33.33333333px;
+}
+.parrots-1   { max-width: calc(var(--parrots-width) * 1); }
+.parrots-2   { max-width: calc(var(--parrots-width) * 2); }
+.parrots-3   { max-width: calc(var(--parrots-width) * 3); }
+.parrots-4   { max-width: calc(var(--parrots-width) * 4); }
+.parrots-5   { max-width: calc(var(--parrots-width) * 5); }
+.parrots-6   { max-width: calc(var(--parrots-width) * 6); }
+.parrots-7   { max-width: calc(var(--parrots-width) * 7); }
+.parrots-8   { max-width: calc(var(--parrots-width) * 8); }
+.parrots-9   { max-width: calc(var(--parrots-width) * 9); }
+.parrots-10  { max-width: calc(var(--parrots-width) * 10); }
+.parrots-11  { max-width: calc(var(--parrots-width) * 11); }
+.parrots-12  { max-width: calc(var(--parrots-width) * 12); }
+.parrots-13  { max-width: calc(var(--parrots-width) * 13); }
+.parrots-14  { max-width: calc(var(--parrots-width) * 14); }
+.parrots-15  { max-width: calc(var(--parrots-width) * 15); }
+.parrots-16  { max-width: calc(var(--parrots-width) * 16); }
+.parrots-17  { max-width: calc(var(--parrots-width) * 17); }
+.parrots-18  { max-width: calc(var(--parrots-width) * 18); }
+.parrots-19  { max-width: calc(var(--parrots-width) * 19); }
+.parrots-20  { max-width: calc(var(--parrots-width) * 20); }
+.parrots-21  { max-width: calc(var(--parrots-width) * 21); }
+.parrots-22  { max-width: calc(var(--parrots-width) * 22); }
+.parrots-23  { max-width: calc(var(--parrots-width) * 23); }
+.parrots-24  { max-width: calc(var(--parrots-width) * 24); }
+
+/* text */
+.text-aliceblue { color: aliceblue !important; }
+.text-palegreen { color: palegreen !important; }
+.text-khaki { color: khaki !important; }
+.text-bisque { color: bisque !important; }
+.text-lavender { color: lavender !important; }
+.text-aquamarine { color: aquamarine !important; }
+.text-gainsboro { color: gainsboro !important; }
+.text-cornsilk { color: cornsilk !important; }
+.text-blanchedalmond { color: blanchedalmond !important; }
+.text-lightsteelblue { color: lightsteelblue !important; }
+.text-lightcoral { color: lightcoral !important; }
+.text-lightpink { color: lightpink !important; }
+.text-darkkhaki { color: darkkhaki !important; }
+.text-whitesmoke { color: whitesmoke !important; }
+
+/* bg */
+.bg-aliceblue { background-color: aliceblue !important; }
+.bg-palegreen { background-color: palegreen !important; }
+.bg-darkseagreen { background-color: darkseagreen !important; }
+.bg-khaki { background-color: khaki !important; }
+.bg-bisque { background-color: bisque !important; }
+.bg-moccasin { background-color: moccasin !important; }
+.bg-lavender { background-color: lavender !important; }
+.bg-aquamarine { background-color: aquamarine !important; }
+.bg-gainsboro { background-color: gainsboro !important; }
+.bg-cornsilk { background-color: cornsilk !important; }
+.bg-blanchedalmond { background-color: blanchedalmond !important; }
+.bg-lightsteelblue { background-color: lightsteelblue !important; }
+.bg-lightcoral { background-color: lightcoral !important; }
+.bg-lightpink { background-color: lightpink !important; }
+.bg-darkkhaki { background-color: darkkhaki !important; }
+.bg-whitesmoke { background-color: whitesmoke !important; }
+.bg-white { background-color: white !important; }
