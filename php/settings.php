@@ -60,6 +60,81 @@ class Settings
         ]);
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public static function get($id) {
+        global $app;
+
+        $sql = "
+            SELECT *
+            FROM settings
+            WHERE id = ?
+        ";
+        $rows = $app->query($sql, [ $id ]);
+
+        if ( !empty($rows[0]) ) {
+            $row = $rows[0];
+        }
+        else {
+            $row = [];
+        }
+
+        $app->response(200, $row);
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public static function post() {
+        global $app;
+
+        $input = file_get_contents('php://input');
+        $params = json_decode($input, true);
+        $fields = [];
+        foreach ($params as $k=>$v) {
+            $fields[] = "`" . $k . "`=:" . $k;
+        }
+        $fields[] = "created_at = UTC_TIMESTAMP()";
+        $fields = implode(',', $fields);
+
+        $sql = "
+            INSERT INTO settings
+            SET {$fields}
+        ";
+        $lastInsertId = $app->query($sql, $params);
+
+        $app->response(200, [
+            'id' => $lastInsertId,
+        ]);
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public static function put($id) {
+        global $app;
+
+        $input = file_get_contents('php://input');
+        $params = json_decode($input, true);
+        unset($params['_method']);
+        $fields = [];
+        foreach ($params as $k=>$v) {
+            $fields[] = "`" . $k . "` = :" . $k;
+        }
+        $fields[] = "updated_at = UTC_TIMESTAMP()";
+        $fields = implode(',', $fields);
+        $params['id'] = $id;
+
+        $sql = "
+            UPDATE settings
+            SET {$fields}
+            WHERE id = :id
+        ";
+        $rowCount = $app->query($sql, $params);
+
+        $app->response(200, [
+            'rowCount' => $rowCount,
+        ]);
+    }
+
 }  /* class */
 
 //**************************************************************************************************

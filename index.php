@@ -27,6 +27,9 @@ $app->routes = [
     // Инструменты
     ['GET',  '/settings',                     'Settings',   'settings', 'tools', 'fas fa-gear',        'Настройки'           ],
     ['GET',  '/api/settings',                 'Settings',   'index'                                                          ],
+    ['GET',  '/api/settings/(\d+)',           'Settings',   'get'                                                            ],
+    ['POST',  '/api/settings',                'Settings',   'post'                                                           ],
+    ['POST',  '/api/settings/(\d+)',          'Settings',   'put'                                                            ],
     ['GET',  '/sysinfo',                      'SysInfo',    'sysinfo',  'tools', 'fas fa-circle-info', 'Информация о системе'],
 ];
 

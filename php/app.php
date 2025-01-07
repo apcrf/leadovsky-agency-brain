@@ -177,6 +177,9 @@ class App
                 array_shift($params);
                 // Параметры маршрута
                 $this->route['params'] = $params;
+                // Test !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                // Право доступа маршрута
+                $this->route['permission'] = 2;
                 return;
             }
         }
