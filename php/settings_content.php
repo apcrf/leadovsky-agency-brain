@@ -5,7 +5,7 @@
         <div class="row pt-2">
             <div class="col-auto mt-1">
                 <h1 class="h4 pt-1">
-                    <i class="<?=$app->route['icon']?>"></i> <?=$app->route['title']?>
+                    <i class="<?=$app->route['icon']?> fa-lg"></i> <?=$app->route['title']?>
                 </h1>
             </div>
             <div class="col-auto mt-1 ms-auto">
@@ -138,186 +138,186 @@
     </div>
 </div> <!-- /container-flex -->
 
-	<!----------------------------------------------------------------------------------------------------------------->
-	<!-- Фильтр -->
-	<!----------------------------------------------------------------------------------------------------------------->
-	<div class="modal modal-floor-2 d-none" v-show="crud.filter.show">
-		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-lg-down">
-			<div class="modal-content">
-				<!-- Modal Header -->
-				<div class="modal-header py-2 pe-1 move" onmousedown="moveModalDown(event, this)">
-					<i class="fas fa-filter fa-lg"></i>&nbsp;
-					<h5 class="modal-title d-inline-block mt-1">Фильтры</h5>
-					<!--  -->
-					<button type="button" class="btn float-end" v-on:click="crud.filter.show = false">
-						<i class="fas fa-times fa-lg text-secondary"></i>
-					</button>
-				</div>
-				<!-- Modal body -->
-				<div class="modal-body pt-3">
-					<div class="row mb-3">
-						<label class="col-form-label col-sm-4">Наименование:</label>
-						<div class="parrots-8">
-							<div class="input-group">
-								<input type="text" class="form-control" placeholder="содержит"
-									v-model="crud.filter.data.name"
-									v-bind:style="filterStyle(crud, 'name')"
-									v-on:keydown.enter="filterSet(crud)"
-									v-on:input="crud.filter.refresh=true"
-								>
-								<button class="btn btn-secondary" v-on:click="filterClear(crud, 'name')" title="Очистить">
-									<i class="fas fa-lg fa-times-circle"></i>
-								</button>
-							</div>
-						</div>
-					</div>
-					<div class="row mb-3">
-						<label class="col-form-label col-sm-4">Используется:</label>
-						<div class="parrots-5">
-							<div class="input-group">
-								<select class="form-select"
-									v-model="crud.filter.data.in_use"
-									v-bind:style="filterStyle(crud, 'in_use')"
-									v-on:change="filterSelectChange(crud, 'in_use')"
-								>
-									<option value="undefined">Все</option>
-									<option value="Y">Да</option>
-									<option value="N">Нет</option>
-								</select>
-								<button class="btn btn-secondary" v-on:click="filterClear(crud, 'in_use')" title="Очистить">
-									<i class="fas fa-lg fa-times-circle"></i>
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- Modal footer -->
-				<div class="modal-footer py-2">
-					<button class="btn btn-warning" v-on:click="filterSet(crud)" v-bind:disabled="!crud.filter.refresh">
-						<i class="fas fa-filter fa-lg"></i>&nbsp; Фильтровать
-					</button>
-					<button class="btn btn-secondary me-0" v-on:click="crud.filter.show=false">
-						<i class="fas fa-times-circle fa-lg"></i>&nbsp; Закрыть
-					</button>
-				</div>
+<!----------------------------------------------------------------------------------------------------------------->
+<!-- Фильтр -->
+<!----------------------------------------------------------------------------------------------------------------->
+<div class="modal modal-floor-2 d-none" v-show="crud.filter.show">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-lg-down">
+		<div class="modal-content">
+			<!-- Modal Header -->
+			<div class="modal-header py-2 pe-1 move" onmousedown="moveModalDown(event, this)">
+				<i class="fas fa-filter fa-lg"></i>&nbsp;
+				<h5 class="modal-title d-inline-block mt-1">Фильтры</h5>
+				<!--  -->
+				<button type="button" class="btn float-end" v-on:click="crud.filter.show = false">
+					<i class="fas fa-times fa-lg text-secondary"></i>
+				</button>
 			</div>
-		</div>
-	</div> <!-- /modal -->
-
-	<!----------------------------------------------------------------------------------------------------------------->
-	<!-- Добавление / Правка -->
-	<!----------------------------------------------------------------------------------------------------------------->
-	<div class="modal modal-floor-2 d-none" v-show="form.show">
-		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-lg-down">
-			<div class="modal-content">
-				<!-- Modal Header -->
-				<div class="modal-header py-2 pe-1 move" onmousedown="moveModalDown(event, this)">
-					<i class="<?=$app->route['icon']?>"></i>&nbsp;
-					<h5 class="modal-title d-inline-block mt-1">Настройка</h5>
-					<!--  -->
-					<button type="button" class="btn float-end" v-on:click="formClose(crud, form)">
-						<i class="fas fa-times fa-lg text-secondary"></i>
-					</button>
-				</div>
-				<!-- Modal NavTabs -->
-				<div class="modal-header pt-2 pb-0 border-0">
-					<ul class="nav nav-tabs">
-						<li class="nav-item" v-for="(tab, key) in form.tabs" v-on:click="methodCall(tab.methodOnClick)">
-							<a class="nav-link" href="#"
-								v-on:click="form.tabActive=key"
-								v-bind:class="{ active: form.tabActive==key, disabled: form.data.id == 0 }"
+			<!-- Modal body -->
+			<div class="modal-body pt-3">
+				<div class="row mb-3">
+					<label class="col-form-label col-sm-4">Наименование:</label>
+					<div class="parrots-8">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="содержит"
+								v-model="crud.filter.data.name"
+								v-bind:style="filterStyle(crud, 'name')"
+								v-on:keydown.enter="filterSet(crud)"
+								v-on:input="crud.filter.refresh=true"
 							>
-								{{tab.caption}}
-							</a>
-						</li>
-					</ul>
-				</div>
-				<!-- Modal Body -->
-				<div class="modal-body">
-					<!-- Tab panes -->
-					<div class="tab-content">
-
-						<!-- Tab pane Настройка -->
-						<div class="tab-pane" v-bind:class="{ active: form.tabActive=='Main' }">
-							<div class="row mb-3">
-								<label class="col-form-label col-sm-3">ID:</label>
-								<div class="parrots-5">
-									<input type="text" class="form-control" disabled v-model="form.data.id">
-								</div>
-							</div>
-							<div class="row mb-3">
-								<label class="col-form-label col-sm-3">Наименование:</label>
-								<div class="parrots-20 col-sm-9">
-									<input type="text" class="form-control"
-										v-model="form.data.name"
-										v-on:input="tabChanged(form, 'name')"
-									>
-								</div>
-							</div>
-							<div class="row mb-3">
-								<label class="col-form-label col-sm-3">Ключ:</label>
-								<div class="parrots-20 col-sm-9">
-									<input type="text" class="form-control"
-										v-model="form.data.key"
-										v-on:input="tabChanged(form, 'key')"
-									>
-								</div>
-							</div>
-							<div class="row mb-3">
-								<label class="col-form-label col-sm-3">Значение:</label>
-								<div class="parrots-20 col-sm-9">
-									<input type="text" class="form-control"
-										v-model="form.data.value"
-										v-on:input="tabChanged(form, 'value')"
-									>
-								</div>
-							</div>
-							<div class="row mb-3">
-								<label class="col-form-label col-sm-3">Используется:</label>
-								<div class="parrots-2 mt-sm-2">
-									<div class="form-check form-switch">
-										<input type="checkbox" class="form-check-input"
-											v-model="form.data.in_use"
-											v-on:input="tabChanged(form, 'in_use')"
-											true-value="Y"
-											false-value="N"
-										>
-									</div>
-								</div>
-							</div>
+							<button class="btn btn-secondary" v-on:click="filterClear(crud, 'name')" title="Очистить">
+								<i class="fas fa-lg fa-times-circle"></i>
+							</button>
 						</div>
-
-						<!-- Tab pane Примечание -->
-						<div class="tab-pane" v-bind:class="{ active: form.tabActive=='Note' }">
-							<div class="row h-100 pb-3">
-								<div class="col-12">
-									<textarea class="form-control h-100" style="resize: none;" placeholder="Введите Примечание"
-										v-model="form.data.note"
-										v-on:input="tabChanged(form, 'note')"
-									>
-									</textarea>
-								</div>
-							</div>
-						</div>
-
 					</div>
 				</div>
-				<!-- Modal Footer -->
-				<div class="modal-footer py-2">
-					<h6 class="modal-title me-auto" v-show="form.error.length>0">
-						<span class="text-danger"><i class="fas fa-exclamation-triangle"></i> &nbsp; {{form.error}}</span>
-					</h6>
-					<button class="btn btn-primary"
-						v-for="(tab, key) in form.tabs"
-						v-on:click="formSave(crud, form, key)"
-						v-show="form.changed[key]"
-					>
-						Сохранить {{tab.caption}}
-					</button>
-					<button class="btn btn-secondary" v-on:click="formClose(crud, form)">
-						<i class="fas fa-times-circle fa-lg"></i>&nbsp; Закрыть
-					</button>
+				<div class="row mb-3">
+					<label class="col-form-label col-sm-4">Используется:</label>
+					<div class="parrots-5">
+						<div class="input-group">
+							<select class="form-select"
+								v-model="crud.filter.data.in_use"
+								v-bind:style="filterStyle(crud, 'in_use')"
+								v-on:change="filterSelectChange(crud, 'in_use')"
+							>
+								<option value="undefined">Все</option>
+								<option value="Y">Да</option>
+								<option value="N">Нет</option>
+							</select>
+							<button class="btn btn-secondary" v-on:click="filterClear(crud, 'in_use')" title="Очистить">
+								<i class="fas fa-lg fa-times-circle"></i>
+							</button>
+						</div>
+					</div>
 				</div>
 			</div>
+			<!-- Modal footer -->
+			<div class="modal-footer py-2">
+				<button class="btn btn-warning" v-on:click="filterSet(crud)" v-bind:disabled="!crud.filter.refresh">
+					<i class="fas fa-filter fa-lg"></i>&nbsp; Фильтровать
+				</button>
+				<button class="btn btn-secondary me-0" v-on:click="crud.filter.show=false">
+					<i class="fas fa-times-circle fa-lg"></i>&nbsp; Закрыть
+				</button>
+			</div>
 		</div>
-	</div> <!-- /modal -->
+	</div>
+</div> <!-- /modal -->
+
+<!----------------------------------------------------------------------------------------------------------------->
+<!-- Добавление / Правка -->
+<!----------------------------------------------------------------------------------------------------------------->
+<div class="modal modal-floor-2 d-none" v-show="form.show">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-lg-down">
+		<div class="modal-content">
+			<!-- Modal Header -->
+			<div class="modal-header py-2 pe-1 move" onmousedown="moveModalDown(event, this)">
+				<i class="<?=$app->route['icon']?> fa-xl"></i>&nbsp;
+				<h5 class="modal-title d-inline-block mt-1">{{form.tabs.Main.caption}}</h5>
+				<!--  -->
+				<button type="button" class="btn float-end" v-on:click="formClose(crud, form)">
+					<i class="fas fa-times fa-lg text-secondary"></i>
+				</button>
+			</div>
+			<!-- Modal NavTabs -->
+			<div class="modal-header pt-2 pb-0 border-0">
+				<ul class="nav nav-tabs">
+					<li class="nav-item" v-for="(tab, key) in form.tabs" v-on:click="methodCall(tab.methodOnClick)">
+						<a class="nav-link" href="#"
+							v-on:click="form.tabActive=key"
+							v-bind:class="{ active: form.tabActive==key, disabled: form.data.id == 0 }"
+						>
+							{{tab.caption}}
+						</a>
+					</li>
+				</ul>
+			</div>
+			<!-- Modal Body -->
+			<div class="modal-body">
+				<!-- Tab panes -->
+				<div class="tab-content">
+
+					<!-- Tab pane Main -->
+					<div class="tab-pane" v-bind:class="{ active: form.tabActive=='Main' }">
+						<div class="row mb-3">
+							<label class="col-form-label col-sm-3">ID:</label>
+							<div class="parrots-5">
+								<input type="text" class="form-control" disabled v-model="form.data.id">
+							</div>
+						</div>
+						<div class="row mb-3">
+							<label class="col-form-label col-sm-3">Наименование:</label>
+							<div class="parrots-20 col-sm-9">
+								<input type="text" class="form-control"
+									v-model="form.data.name"
+									v-on:input="tabChanged(form, 'name')"
+								>
+							</div>
+						</div>
+						<div class="row mb-3">
+							<label class="col-form-label col-sm-3">Ключ:</label>
+							<div class="parrots-20 col-sm-9">
+								<input type="text" class="form-control"
+									v-model="form.data.key"
+									v-on:input="tabChanged(form, 'key')"
+								>
+							</div>
+						</div>
+						<div class="row mb-3">
+							<label class="col-form-label col-sm-3">Значение:</label>
+							<div class="parrots-20 col-sm-9">
+								<input type="text" class="form-control"
+									v-model="form.data.value"
+									v-on:input="tabChanged(form, 'value')"
+								>
+							</div>
+						</div>
+						<div class="row mb-3">
+							<label class="col-form-label col-sm-3">Используется:</label>
+							<div class="parrots-2 mt-sm-2">
+								<div class="form-check form-switch">
+									<input type="checkbox" class="form-check-input"
+										v-model="form.data.in_use"
+										v-on:input="tabChanged(form, 'in_use')"
+										true-value="Y"
+										false-value="N"
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Tab pane Note -->
+					<div class="tab-pane" v-bind:class="{ active: form.tabActive=='Note' }">
+						<div class="row h-100 pb-3">
+							<div class="col-12">
+								<textarea class="form-control h-100" style="resize: none;" placeholder="Введите Примечание"
+									v-model="form.data.note"
+									v-on:input="tabChanged(form, 'note')"
+								>
+								</textarea>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<!-- Modal Footer -->
+			<div class="modal-footer py-2">
+				<h6 class="modal-title me-auto" v-show="form.error.length>0">
+					<span class="text-danger"><i class="fas fa-exclamation-triangle"></i> &nbsp; {{form.error}}</span>
+				</h6>
+				<button class="btn btn-primary"
+					v-for="(tab, key) in form.tabs"
+					v-on:click="formSave(crud, form, key)"
+					v-show="form.changed[key]"
+				>
+					Сохранить {{tab.caption}}
+				</button>
+				<button class="btn btn-secondary" v-on:click="formClose(crud, form)">
+					<i class="fas fa-times-circle fa-lg"></i>&nbsp; Закрыть
+				</button>
+			</div>
+		</div>
+	</div>
+</div> <!-- /modal -->

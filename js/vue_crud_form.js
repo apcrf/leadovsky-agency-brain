@@ -1,8 +1,5 @@
 
 var vueCrudFormData = {
-    page: {
-        // { "icon":"", "name":"", "view":"", "permissions":{}, "permission":0 }
-    },
     refs: {
     },
     crud: {

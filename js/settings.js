@@ -1,6 +1,5 @@
 
 var o = vueCrudFormData;
-//o.page = window.page;
 o.crud.restAPI = '/api/settings';
 o.crud.deleteCheck = false;
 o.crud.sort.by = 'settings.name';
@@ -11,7 +10,7 @@ o.form.tabs = {
     Note: { caption: 'Примечание', fields: ['note'] },
 };
 
-////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const app = Vue.createApp({
     data() {

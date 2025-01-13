@@ -9,7 +9,7 @@
 		<!-- siteName -->
 		<a class="navbar-brand me-0" href="/">
 			<img src="/images/<?=$app->settings['appLogo']?>" style="width: 37px; height: 37px;">
-			<span class="d-inline-block me-1" style="transform: translateY(1px);"><?=$app->settings['appTitle']?></span>
+			<span class="d-inline-block ps-1 me-1" style="transform: translateY(1px);"><?=$app->settings['appTitle']?></span>
 		</a>
 		<!-- toggler -->
 		<button type="button" class="navbar-toggler" onclick="navbarBtnClick(this)" title="Меню сайта">

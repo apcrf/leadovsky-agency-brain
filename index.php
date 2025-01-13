@@ -25,12 +25,13 @@ $app->routes = [
     ['*',    '/api/test1/([\w\-]+)',          'Test',       'api_test1'                                                      ],
     ['DIV',  '',                              '',           '',         'refs'                                               ],
     // Инструменты
-    ['GET',  '/settings',                     'Settings',   'settings', 'tools', 'fas fa-gear',        'Настройки'           ],
-    ['GET',  '/api/settings',                 'Settings',   'index'                                                          ],
-    ['GET',  '/api/settings/(\d+)',           'Settings',   'get'                                                            ],
-    ['POST',  '/api/settings',                'Settings',   'post'                                                           ],
-    ['POST',  '/api/settings/(\d+)',          'Settings',   'put'                                                            ],
-    ['GET',  '/sysinfo',                      'SysInfo',    'sysinfo',  'tools', 'fas fa-circle-info', 'Информация о системе'],
+    ['GET',    '/settings',                   'Settings',   'settings', 'tools', 'fas fa-gear',        'Настройки'           ],
+    ['GET',    '/api/settings',               'Settings',   'index'                                                          ],
+    ['GET',    '/api/settings/(\d+)',         'Settings',   'get'                                                            ],
+    ['POST',   '/api/settings',               'Settings',   'post'                                                           ],
+    ['POST',   '/api/settings/(\d+)',         'Settings',   'put'                                                            ],
+    ['DELETE', '/api/settings/(\d+)',         'Settings',   'delete'                                                         ],
+    ['GET',    '/sysinfo',                    'SysInfo',    'sysinfo',  'tools', 'fas fa-circle-info', 'Информация о системе'],
 ];
 
 //**************************************************************************************************
@@ -41,19 +42,21 @@ $app->router();
 if ( empty($app->route) ) {
     // Not Found (маршрут не найден)
     http_response_code(404);
+    exit();
 }
 else {
     // Имя файла совпадает с именем класса (в нижнем регистре)
     $file = 'php/' . mb_strtolower($app->route['class']) . '.php';
-    if ( file_exists($file) ) {
+    if ( !file_exists($file) ) {
+        // Bad Request (файл класса не найден)
+        http_response_code(400);
+        exit();
+    }
+    else {
         // Подключение скрипта
         require($file);
         // Вызов метода класса и передача списка параметров из элементов массива
         ($app->route['class'])::{$app->route['method']}(...$app->route['params']);
-    }
-    else {
-        // Bad Request (файл класса не найден)
-        http_response_code(400);
     }
 }
 
